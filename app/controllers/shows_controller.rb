@@ -13,6 +13,7 @@ class ShowsController < ApplicationController
   get "/shows/:id" do 
     # get reviews for show 
     @shows = Show.find_by(id: params[:id])
+    redirect "/shows/new" unless @show
     erb :"/shows/show.html"
   end
 end
