@@ -12,6 +12,7 @@ class ShowsController < ApplicationController
 
   get "/shows/:id" do 
     # get reviews for show 
+    @shows = Show.find_by(id: params[:id])
     erb :"/shows/show.html"
   end
 end
