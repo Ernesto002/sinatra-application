@@ -2,18 +2,25 @@
   <html lang="en">
   <head>
     <meta charset="utf-8" />
-
     <title>TvShowReviews</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+    <%= session_info.each |data| %>
+      <p><%= data %></p>
+    <% end %>
+    <%= logged_in? %>
+    <% if logged_in? %>
+      <form method="POST" action="/logout"></form>
+        <button type="submit" value="Log Out">Log Out!</button>
+      </form>
+    <% else %>
+      <a href="/login" >Log In</a>
+      <a href="/signup" >Sign Up</a>
+    <% end %>
     <div class="wrapper">
-
         <%= yield %>
-
       <footer class="branding">
         <small>&copy; 2021 <strong>TvShowReviews</strong></small>
       </footer>

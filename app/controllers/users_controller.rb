@@ -24,11 +24,15 @@ class UsersController < ApplicationController
 
   # shows all reviews by user
   get "users/:id" do 
+    @user = User.find_by(id: params[:id]) 
     erb :"/users/show.html"
   end
 
   # create new user
-  post "users/new" do 
+  post "/signup" do 
+    redirect "/signup" if params.values.any? { |p| p.empty? } || 
+    User.find_by(username: params[:username]) || 
+    User.find_by(email: params[:email]) 
     # find way to post password better
     user = User.create(username: params[:username], email: params[:email], password: params[:password])
     redirect "/login" 
