@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
 
   get "/signup" do
+    redirect "/users/#{session[:user_id]}" if session[:user_id]
     erb :"/users/new.html"
   end
 
   get "/login" do
+    redirect "/users/#{session[:user_id]}" if session[:user_id]
     erb :"/users/login.html"
   end
 
@@ -15,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   post "/logout" do 
-    #session.destroy
+    session.destroy
     redirect "/"
   end
 
