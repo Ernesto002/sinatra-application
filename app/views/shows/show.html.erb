@@ -1,6 +1,7 @@
 <h1>This is the show page for an individual instance of your model.</h1>
 <p>Add a review!</p>
 <form method="POST" action="/reviews">
+  <% if @show %>
     <input type="hidden" name="show_id" value="<%=@shows.id%>">
         <input type="text" name="content">
         <select name="rating">
@@ -10,5 +11,6 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
-        <input type="submit" value="submit">
+    <input type="submit" value="submit">
+  <% end %>
 </form>
