@@ -1,7 +1,6 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
-
   configure do
     enable :sessions
     set :public_folder, 'public'
@@ -9,7 +8,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, ENV['SESSION_SECRET']
   end
 
-  get "/" do
+  get '/' do
     erb :welcome
   end
 

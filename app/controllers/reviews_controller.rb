@@ -3,10 +3,10 @@ class ReviewsController < ApplicationController
   # POST: /reviews
   post "/reviews" do
     show = Show.find_by(id: params[:show_id])
-    identical = !!show.reviews.detect { |review| review.content == params[:content] && review.user_id == session[:user_id]}
-    redirect "/shows/#{params[:show_id]}?error=Invalid form submission, please try again:" if params.values.any?(&:empty?) || identical
+    identical = !!show.reviews.detect { |review| review.content == params[:content] && review.user_id == current_user.id }
+    redirect '/shows/#{params[:show_id]}?error=Invalid form submission, please try again:' if params.values.any?(&:empty?) || identical
 
-    review = Review.create(content: params[:content], rating: params[:rating], show_id: params[:show_id], user_id: session[:user_id])
+    review = Review.new(content: params[:content], rating: params[:rating], show_id: params[:show_id], user_id: session[:user_id])
     redirect "/shows/#{review.show_id}"
   end
 
