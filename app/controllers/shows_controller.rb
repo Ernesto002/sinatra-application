@@ -11,9 +11,10 @@ class ShowsController < ApplicationController
   end
 
   get "/shows/:id" do 
-    # get reviews for show 
     @show = Show.find_by(id: params[:id])
     redirect :"shows/new" unless @show
+    user_ids = @show.reviews.map { |review| review[:user_id] }
+    @users = User.all.select { |user| user_ids.include?(user.id) }
     erb :"/shows/show.html"
   end
 
