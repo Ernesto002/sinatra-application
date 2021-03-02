@@ -1,11 +1,14 @@
 class ShowsController < ApplicationController
 
   get "/shows/new" do
+    @error = params[:error]
     erb :"/shows/new.html"
   end
 
   post "/shows" do
-    redirect "/shows/new" if params.values.any?(&:empty?) || Show.find_by(name: params[:name])
+    if params.values.any?(&:empty?) || Show.find_by(name: params[:name])
+      redirect "/shows/new?error=Invalid for submission, please try again:"
+    end
     show = Show.create(name: params[:name])
     redirect "/shows/#{show.id}"
   end

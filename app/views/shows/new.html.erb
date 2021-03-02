@@ -1,5 +1,7 @@
 <h1>Add a Show!</h1>
-<p>Add a review!</p>
+<% if @error %>
+  <p><%=@error%></p>
+<% end %>
 <form method="POST" action="/shows">
   <input type="text" name="content">
   <input type="submit" value="submit">
