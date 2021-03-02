@@ -1,16 +1,26 @@
-<h1>This is the show page for an individual instance of your model.</h1>
-<p>Add a review!</p>
-<form method="POST" action="/reviews">
-  <% if @show %>
-    <input type="hidden" name="show_id" value="<%=@show.id%>">
-        <input type="text" name="content">
-        <select name="rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-    <input type="submit" value="submit">
+<h1><%= @show.name %></h1>
+<% unless @show.reviews.empty? %>
+  <% @show.reviews.each do |review| %>
+    <%= review.content %>
   <% end %>
-</form>
+<% else %>
+  <p><%= @show.name %> has no reviews!</p>
+<% end %>
+
+<%= if logged_in? %>
+<p>Add a review!</p>
+  <form method="POST" action="/reviews">
+    <input type="hidden" name="show_id" value="<%=@show.id%>">
+    <input type="text" name="content">
+    <select name="rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <input type="submit" value="submit">
+  </form>
+<% else %>
+  <p>Log in to add a review!</p>
+<% end %>

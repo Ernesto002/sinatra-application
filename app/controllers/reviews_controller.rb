@@ -1,12 +1,11 @@
 class ReviewsController < ApplicationController
 
-  # GET: /reviews/new
-  get "/reviews/new" do 
-    erb :"/reviews/new.html"
-  end
-
   # POST: /reviews
-  post "/reviews" do 
+  post "/reviews" do
+    show = Show.find_by(id: params[:show_id])
+    identical = !!show_reviews_by_user.detect { |review| review.content == params[:content] && review.user_id == session[:user_id]}
+    redirect "/shows/#{params[:show_id]}" if params.values.any?(&:empty?) || identical
+
     review = Review.create(content: params[:content], rating: params[:rating], show_id: params[:show_id], user_id: session[:user_id])
     redirect "/shows/#{review.show_id}"
   end
@@ -31,6 +30,6 @@ class ReviewsController < ApplicationController
   delete "/reviews/:id/delete" do 
     # delete the review
     # redirect to show/:show_id
-    redirect "/"
+    redirect :/
   end
 end
