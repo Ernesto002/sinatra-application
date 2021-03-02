@@ -42,6 +42,9 @@ GEM
     diff-lcs (1.4.4)
     dotenv (2.7.6)
     eventmachine (1.2.7)
+    fabrication (2.21.1)
+    faker (2.16.0)
+      i18n (>= 1.6, < 2)
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
     method_source (1.0.0)
@@ -122,6 +125,8 @@ DEPENDENCIES
   capybara
   database_cleaner!
   dotenv
+  fabrication
+  faker
   pry
   rack-test
   rake
