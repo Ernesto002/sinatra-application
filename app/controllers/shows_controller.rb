@@ -7,7 +7,7 @@ class ShowsController < ApplicationController
 
   post "/shows" do
     if params.values.any?(&:empty?) || Show.find_by(name: params[:name])
-      redirect "/shows/new?error=Invalid for submission, please try again:"
+      redirect "/shows/new?error=Invalid form submission, please try again:"
     end
     show = Show.create(name: params[:name])
     redirect "/shows/#{show.id}"
@@ -16,6 +16,7 @@ class ShowsController < ApplicationController
   get "/shows/:id" do 
     @show = Show.find_by(id: params[:id])
     redirect :"shows/new" unless @show
+    @error = params[:error]
     user_ids = @show.reviews.map { |review| review[:user_id] }
     @users = User.all.select { |user| user_ids.include?(user.id) }
     erb :"/shows/show.html"

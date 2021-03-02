@@ -2,7 +2,7 @@
 <% unless @show.reviews.empty? %>
   <% @show.reviews.each do |review| %>
     <% user = @users.detect { |user| user.id == review.user_id } %>
-    <%= review.content %> by <a href='/users/<%= user.id %>'><%= user.username %></a>
+    <p><%= review.content %> by <a href='/users/<%= user.id %>'><%= user.username %></a></p>
     <% if user == current_user %>
       <div class='current_user_actions'>
         <a href='/reviews/<%= review.id %>/edit'>edit review</a>
@@ -19,6 +19,9 @@
 
 <%= if logged_in? %>
 <p>Add a review!</p>
+  <% if @error %>
+    <p><%=@error%></p>
+  <% end %>
   <form method="POST" action="/reviews">
     <input type="hidden" name="show_id" value="<%=@show.id%>">
     <input type="text" name="content">
