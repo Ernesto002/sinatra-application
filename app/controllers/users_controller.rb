@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   get "/signup" do
     redirect "/users/#{current_user.id}" if logged_in?
     @error = params[:error]
-    erb :"/users/new.html"
+    erb :"/users/signup.html"
   end
 
   get "/login" do
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   post "/logout" do 
     session.destroy
-    redirect :/
+    redirect back
   end
 
   get "users/:id" do 

@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
   patch "/reviews/:id" do
     review = Review.find(params[:id])
     review.update(content: params[:content], rating: params[:rating])
-    redirect "/reviews/:id"
+    redirect "/shows/#{review.show_id}"
   end
 
   #DELETE: /reviews/5/delete
