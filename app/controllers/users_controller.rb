@@ -1,18 +1,26 @@
 class UsersController < ApplicationController
-
-  get "/signup" do
+  
+  get '/signup' do
     redirect "/users/#{current_user.id}" if logged_in?
     @error = params[:error]
     erb :"/users/signup.html"
   end
+  
+  post '/signup' do 
+    if params.values.any?(&:empty?) || User.find_by(username: params[:username]) || User.find_by(email: params[:email]) 
+      redirect "/signup?error=Invalid for submission, please try again:"
+    end
+    User.create(username: params[:username], email: params[:email], password: params[:password])
+    redirect :login
+  end
 
-  get "/login" do
-    redirect "/users/#{session[:user_id]}" if session[:user_id]
+  get '/login' do
+    redirect "/users/#{current_user.id}" if logged_in?
     @error = params[:error]
     erb :"/users/login.html"
   end
 
-  post "/login" do
+  post '/login' do
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
@@ -21,12 +29,12 @@ class UsersController < ApplicationController
     redirect "/login?error=Invalid for submission, please try again:"
   end
 
-  post "/logout" do 
+  post '/logout' do 
     session.destroy
     redirect back
   end
 
-  get "users/:id" do 
+  get 'users/:id' do 
     @user = User.find_by(id: params[:id])
     redirect back unless @user 
     show_ids = @user.reviews.map { |review| review[:movie_id] }
@@ -34,14 +42,5 @@ class UsersController < ApplicationController
     erb :"/users/show.html"
   end
 
-  # create new user
-  post "/signup" do 
-    if params.values.any?(&:empty?) || User.find_by(username: params[:username]) || User.find_by(email: params[:email]) 
-      redirect "/signup?error=Invalid for submission, please try again:"
-    end
-    # find way to post password better
-    user = User.create(username: params[:username], email: params[:email], password: params[:password])
-    redirect :login
-  end
 
 end

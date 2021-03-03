@@ -11,7 +11,7 @@ class ShowsController < ApplicationController
     redirect '/shows/#{show.id}'
   end
 
-  get "/shows/:id" do 
+  get '/shows/:id' do 
     @show = Show.find_by(id: params[:id])
     redirect :'shows/new' unless @show
     @error = params[:error]
