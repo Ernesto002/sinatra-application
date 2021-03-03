@@ -1,8 +1,8 @@
 Here are some shows!
-<ul style='colums: 4'>
+<ul style='columns: 4'>
   <% @shows.each do |show| %>
-    <li><a href="/shows/<%= show.id %>"><%= show.name %></a></li>
+    <li><a href='/shows/<%= show.id %>'><%= show.name %></a></li>
   <% end %>
 </ul>
 <p>Don't see your show?</p>
-<p><a href="/shows/new">Add a show!</a></p>
+<p><a href='/shows/new'>Add a show!</a></p>
