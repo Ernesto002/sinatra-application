@@ -11,10 +11,12 @@
       <form method="POST" action="/logout"></form>
         <button type="submit" value="Log Out">Log Out!</button>
       </form>
+      <a href="/users/<%=current_user.id%>">Your Profile</a> |
     <% else %>
-      <a href="/login" >Log In</a>
-      <a href="/signup" >Sign Up</a>
+      <a href="/login" >Log In</a> |
+      <a href="/signup" >Sign Up</a> |
     <% end %>
+    <a href="/shows">Show Index</a>
     <div class="wrapper">
         <%= yield %>
       <footer class="branding">
