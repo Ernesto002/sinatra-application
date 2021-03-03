@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   get 'users/:id' do 
     @user = User.find_by(id: params[:id])
     redirect back unless @user 
-    show_ids = @user.reviews.map { |review| review[:movie_id] }
+    show_ids = @user.reviews.map { |review| review[:show_id] }
     @shows = Show.all.select { |show| show_ids.include?(show.id) }
     erb :"/users/show.html"
   end

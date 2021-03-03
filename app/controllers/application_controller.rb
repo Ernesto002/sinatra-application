@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    redirect :movies
+    redirect :shows
   end
 
   helpers do 
