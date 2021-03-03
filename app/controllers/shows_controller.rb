@@ -2,7 +2,7 @@ class ShowsController < ApplicationController
 
   get '/shows/new' do
     @error = params[:error]
-    erb :'/shows/new.hmtl'
+    erb :'/shows/new.html'
   end
 
   post '/shows' do
