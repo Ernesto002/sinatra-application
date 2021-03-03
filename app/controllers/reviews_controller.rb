@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
 
   get "/reviews/:id/edit" do
     @review = Review.find(params[:id])
+    redirect :login if @review.reviewer != current_user
     erb :"/reviews/edit.html"
   end
 
