@@ -1,5 +1,4 @@
-class ShowsController < ApplicationController
-
+class MoviesController < ApplicationController
   get '/shows/new' do
     @error = params[:error]
     erb :'/shows/new.html'
@@ -11,7 +10,7 @@ class ShowsController < ApplicationController
     redirect "/shows/#{show.id}"
   end
 
-  get '/shows/:id' do 
+  get '/shows/:id' do
     @show = Show.find_by(id: params[:id])
     redirect :'shows/new' unless @show
     @error = params[:error]
@@ -20,8 +19,8 @@ class ShowsController < ApplicationController
     erb :'/shows/show.html'
   end
 
-  get '/shows' do 
+  get '/shows' do
     @shows = Show.all
-    erb :"/shows/index.html"
+    erb :'/shows/index.html'
   end
 end
