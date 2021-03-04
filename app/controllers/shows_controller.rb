@@ -1,4 +1,4 @@
-class MoviesController < ApplicationController
+class ShowsController < ApplicationController
   get '/shows/new' do
     @error = params[:error]
     erb :'/shows/new.html'
@@ -21,6 +21,6 @@ class MoviesController < ApplicationController
 
   get '/shows' do
     @shows = Show.all
-    erb :'/shows/index.html'
+    erb :"/shows/index.html"
   end
 end
