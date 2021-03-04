@@ -1,20 +1,26 @@
-<h1>Reviews by <%= @user.username %>!</h1>
+<!DOCTYPE html>
+<html lang="en">
+   <head> 
+    <link rel="stylesheet" type="text/css" href="/stylesheets/application.css" />
+   </head>
+   <h1>Reviews by <%= @user.username %>!</h1>
 
-<% unless @user.reviews.empty? %>
-    <% @user.reviews.each do |review| %>
-        <% show = @shows.detect { |show| show.id == review.show_id } %>
-        <p> Thoughts about <a href='/shows/<%= show.id %>'><%= show.name %></a>: <%= review.content %>
-        <% if @user == current_user %>
-            <div class='current_user_actions_review_<%=review.id%>'>
-                <a href ='/reviews/<%= review.id %>/edit'>edit review</a>
-                <form method='POST' action='/reviews/<%= review.id %>/delete'>
-                    <input type='hidden' name='_method' value='delete'>
-                    <input type='submit' name='delete' value='delete review'>
-                </form>
-            </div>
+    <% unless @user.reviews.empty? %>
+        <% @user.reviews.each do |review| %>
+            <% show = @shows.detect { |show| show.id == review.show_id } %>
+            <p> Thoughts about <a href='/shows/<%= show.id %>'><%= show.name %></a>: <%= review.content %>
+            <% if @user == current_user %>
+                <div class='current_user_actions_review_<%=review.id%>'>
+                    <a href ='/reviews/<%= review.id %>/edit'>edit review</a>
+                    <form method='POST' action='/reviews/<%= review.id %>/delete'>
+                        <input type='hidden' name='_method' value='delete'>
+                        <input type='submit' name='delete' value='delete review'>
+                    </form>
+                </div>
+            <% end %>
+            <hr>
         <% end %>
-        <hr>
+    <% else %>
+        <p><%= @user.username %> hasn't posted any reviews!</p>
     <% end %>
-<% else %>
-    <p><%= @user.username %> hasn't posted any reviews!</p>
-<% end %>
+</html>

@@ -1,9 +1,17 @@
-<h1>Log in</h1>
-<% if @error %>
-  <p><%=@error%></p>
-<% end %>
-<form method='POST' action='/login'>
-  <input type='text' name='username' placeholder='Username:'>
-  <input type='password' name='password' placeholder='Password:'>
-  <input type='submit' value='Log in'>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/application.css" />
+  </head>
+  <body>
+    <h1>Log in</h1>
+    <% if @error %>
+      <p><%=@error%></p>
+    <% end %>
+    <form method='POST' action='/login'>
+      <input type='text' name='username' placeholder='Username:'>
+      <input type='password' name='password' placeholder='Password:'>
+      <input type='submit' value='Log in'>
+    </form>
+  </body>
+</html>
