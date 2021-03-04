@@ -5,9 +5,9 @@
         <% show = @shows.detect { |show| show.id == review.show_id } %>
         <p> Thoughts about <a href='/shows/<%= show.id %>'><%= show.name %></a>:</p>
         <p><%= review.content %> </p>
-        <% if user == current_user %>
-            <div class="current_user_actions_review_<%=review.id%>">
-                <a href ="/reviews/<%= review.id %>/edit">edit review</a>
+        <% if @user == current_user %>
+            <div class='current_user_actions_review_<%=review.id%>'>
+                <a href ='/reviews/<%= review.id %>/edit'>edit review</a>
                 <form method='POST' action='/reviews/<%= review.id %>/delete'>
                     <input type='hidden' name='_method' value='delete'>
                     <input type='submit' name='delete' value='delete review'>

@@ -14,16 +14,16 @@ class ReviewsController < ApplicationController
   get '/reviews/:id/edit' do
     @review = Review.find(params[:id])
     redirect :login if @review.reviewer != current_user
-    erb :"/reviews/edit.html"
+    erb :'/reviews/edit.html'
   end
 
-  patch "/reviews/:id" do
+  patch '/reviews/:id' do
     review = Review.find(params[:id])
     review.update(content: params[:content], rating: params[:rating])
     redirect "/shows/#{review.show_id}"
   end
 
-  delete "/reviews/:id/delete" do 
+  delete '/reviews/:id/delete' do 
     review = Review.find_by(id: params[:id])
     review.destroy if review.reviewer == current_user
     redirect back

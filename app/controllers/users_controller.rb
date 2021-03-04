@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   get '/login' do
     redirect "/users/#{current_user.id}" if logged_in?
     @error = params[:error]
-    erb :"/users/login.html"
+    erb :'/users/login.html'
   end
 
   post '/login' do
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/users/#{user.id}"
     end
-    redirect "/login?error=Invalid for submission, please try again:"
+    redirect '/login?error=Invalid for submission, please try again:'
   end
 
   post '/logout' do 
@@ -34,13 +34,12 @@ class UsersController < ApplicationController
     redirect back
   end
 
-  get 'users/:id' do 
+  get '/users/:id' do
     @user = User.find_by(id: params[:id])
-    redirect back unless @user 
+    redirect back unless @user
     show_ids = @user.reviews.map { |review| review[:show_id] }
     @shows = Show.all.select { |show| show_ids.include?(show.id) }
-    erb :"/users/show.html"
+    erb :'/users/show.html'
   end
-
 
 end
