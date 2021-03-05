@@ -1,6 +1,6 @@
 require "faker" 
 
-100.times do 
+50.times do 
     #faker doesn't have Faker::Show.title
     show_title = Faker::Movie.title
     shows = Show.new(
