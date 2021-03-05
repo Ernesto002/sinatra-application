@@ -7,7 +7,7 @@
   <% unless @show.reviews.empty? %>
      <% @show.reviews.each do |review| %>
       <% user = @users.detect { |user| user.id == review.user_id } %>
-      <p><%= review.content%> by <a href='/users/<%= user.id %>'><%= user.username %></a></br>
+      <p><%= review.content%> review by: <a href='/users/<%= user.id %>'><%= user.username %></a></br>
       Rating: <%= review.rating %>/5</p>
       <% if user == current_user %>
         <div class='current_user_actions_review_<%=review.id%>'>
