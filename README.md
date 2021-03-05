@@ -40,4 +40,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/Ernest
 
 ## License 
 
-This code is available as open source under this [LICENSE](https://github.com/Ernesto002/sinatra-application/blob/master/LICENSE).
+This code is available for the general public under this [LICENSE](https://github.com/Ernesto002/sinatra-application/blob/master/LICENSE).
