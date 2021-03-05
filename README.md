@@ -33,3 +33,11 @@ To launch server run:
 ```bash
 $ shotgun
 ```
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/Ernesto002/sinatra-application. This project is intended to be a safe, welcoming space for collaboration, and contributers are expected to adhere to the [Code of Conduct](https://github.com/Ernesto002/sinatra-application/blob/master/CODE_OF_CONDUCT.md).
+
+## License 
+
+This code is available as open source under this [LICENSE](https://github.com/Ernesto002/sinatra-application/blob/master/LICENSE).
