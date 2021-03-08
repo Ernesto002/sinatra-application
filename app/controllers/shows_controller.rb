@@ -5,7 +5,7 @@ class ShowsController < ApplicationController
   end
 
   post '/shows' do
-    redirect '/shows/new?error=Invalid form submission, please try again:' if params.values.any?(&:empty?) || Show.find_by(name: params[:name])
+    redirect '/shows/new?error=Invalid submission, please try again:' if params.values.any?(&:empty?) || Show.find_by(name: params[:name])
     show = Show.create(name: params[:name])
     redirect "/shows/#{show.id}"
   end

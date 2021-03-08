@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   post '/reviews' do
     show = Show.find_by(id: params[:show_id])
     identical = !!show.reviews.detect { |review| review.content == params[:content] && review.user_id == current_user.id }
-    redirect "/shows/#{params[:show_id]}?error=Invalid form submission, please try again:" if params.values.any?(&:empty?) || identical
+    redirect "/shows/#{params[:show_id]}?error=Invalid submission, please try again:" if params.values.any?(&:empty?) || identical
     review = Review.new(content: params[:content], rating: params[:rating])
     review.reviewer = current_user
     review.show = Show.find(params[:show_id])

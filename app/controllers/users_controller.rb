@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/users/#{user.id}"
     end
-    redirect '/login?error=Invalid form submission, please try again:'
+    redirect '/login?error=Invalid username or password, please try again:'
   end
 
   post '/logout' do
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params.values.any?(&:empty?) || User.find_by(username: params[:username]) || User.find_by(email: params[:email])
-      redirect '/signup?error=Invalid form submission, please try again:'
+      redirect '/signup?error=Invalid submission, please try again:'
     end
     User.create(username: params[:username], email: params[:email], password: params[:password])
     redirect :login
