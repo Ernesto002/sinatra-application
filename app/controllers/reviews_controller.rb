@@ -19,6 +19,9 @@ class ReviewsController < ApplicationController
 
   patch '/reviews/:id' do
     review = Review.find(params[:id])
+    if review.reviewer != current_user
+      redirect "/shows/#{review.show_id}"
+    end 
     review.update(content: params[:content], rating: params[:rating])
     redirect "/shows/#{review.show_id}"
   end
