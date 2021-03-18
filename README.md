@@ -1,7 +1,7 @@
 # Sinatra Application
 
 This is a Sinatra based TV show review app that includes all CRUD features with the following relationships:
-
+![sinatra_flow](https://user-images.githubusercontent.com/73979053/111700913-4d63f380-87f7-11eb-986f-c95a1653ad3e.JPG)
 
 ## Installation 
 
